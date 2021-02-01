@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLaunchMissionInfoQuery } from '../../generated/graphql';
 import {useParams } from 'react-router-dom';
-import ReactPlayer from "react-player";
 import {Loading} from '../loading';
 
 
@@ -20,29 +19,25 @@ import {Loading} from '../loading';
     if (error || !data)
         return <h1 style={{color:"white"}}>Error</h1>
     
-
+   let date=data.launch?.launch_year
+     
         
     return(
         <>
         <div style={{color:"white"}}>
                   <h1 ><span style={{color: "#777" ,fontSize:"40px"}}> Mission: {data.launch?.mission_name}</span></h1>
-
-        <p  style={{color: "#777" ,fontSize:"30px", fontWeight:"bold", fontFamily:"Source Sans Pro"}}>{data.launch?.details!=null && 
-        data.launch?.details!=undefined?"Descritpion :"+data.launch?.details:""}</p>
-        <p >{data.launch?.rocket?.rocket_name}</p>
+        <div style={{color: "#777" ,fontSize:"30px", fontWeight:"bold", fontFamily:"Source Sans Pro"}}>
+        <p  style={{color: "#777" ,fontSize:"30px", fontWeight:"bold", fontFamily:"Source Sans Pro"}}>{data.launch?.details!==null && 
+        data.launch?.details!==undefined?"Descritpion :"+data.launch?.details:""}</p>
+        <p >Rocket Name : {data.launch?.rocket?.rocket_name}</p>
         
-        <p >{data.launch?.launch_year}</p>
+        <p >{data.launch?.launch_year!==null &&data.launch?.launch_year!==undefined?"Launching Date : "+date:"" }</p>
         ￼
+         </div>
 
 
-Falcon 1
 
-
-        { <ReactPlayer
-        style={{margin:"0 auto"}}
-        url={data.launch?.links?.video_link!=undefined?data.launch.links.video_link:"https://www.youtube.com/watch?v=ujX6CuRELFE"}
-      />
-       }
+         
    </div>
         
 

@@ -1,3 +1,4 @@
+ 
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -35,11 +36,12 @@ jobs:
         
   # Build React App with Yarn
     - name: Build React App
-      run: yarn build   
+      run: yarn build
       
   # Install Surge
     - name : Install Surge
       run: npm install --global surge
+      
       
  # Deploy Surge
     - name: Deploy React App to Surge

@@ -12,4 +12,6 @@ deploy:
   domain: demoSpaceX-WebApp.surge.sh/
   project: ./build/
 
+
 on:
+  branch: master

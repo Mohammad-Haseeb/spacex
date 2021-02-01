@@ -2,7 +2,7 @@ import React from 'react';
 import { useMissionsInfoQuery } from './../../generated/graphql';
 import MissionList from './MissionListAccordian';
 import "./list.css";
-
+import {Loading} from './../loading';
 
 
 const MissionContainer = () => {
@@ -10,7 +10,7 @@ const MissionContainer = () => {
     const { data, error, loading } = useMissionsInfoQuery();
 
     if (loading)
-        return <h2>Loading</h2>
+        return (<Loading/>)
 
     if (error || !data)
         return <h1>Error</h1>

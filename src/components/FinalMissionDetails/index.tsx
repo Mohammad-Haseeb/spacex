@@ -2,6 +2,9 @@ import React from 'react';
 import { useLaunchMissionInfoQuery } from './../../generated/graphql';
 import {useParams } from 'react-router-dom';
 
+import {Loading} from './../loading';
+
+
  export let CompoleteDetails=()=>{
     let { invoiceId } = useParams();
     let x:string=invoiceId
@@ -11,7 +14,7 @@ import {useParams } from 'react-router-dom';
            },
          });
          if (loading)
-        return <h2 style={{color:"white"}}>Loading</h2>
+        return (<Loading/>)
 
     if (error || !data)
         return <h1 style={{color:"white"}}>Error</h1>

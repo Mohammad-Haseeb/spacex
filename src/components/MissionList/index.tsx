@@ -18,6 +18,7 @@ const MissionContainer = () => {
 
     return (
         <>
+        <p style={{color:"white",marginLeft:"30px",marginBottom:"0px",marginTop:"0px",fontWeight:"bolder",fontSize:"40px"}}>Launches</p>
         <span className="Success"></span> <span className="text"> = Success</span><br/>
         <span className="fail"></span> <span className="text"> = Fail</span><br/>
         <ul style={{listStyle:"none",marginLeft:"0px"}}>

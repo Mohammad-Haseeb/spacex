@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+The process which used to install dependencies in react-typescript project
+ 
+yarn add graphql graphql-tag @apollo/client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+yarn add -D @graphql-codegen/cli
 
-## Available Scripts
+yarn add -D @graphql-codegen/typescript-operations
 
-In the project directory, you can run:
+yarn graphql-codegen init
 
-### `yarn start`
+This will launch a CLI wizard. Do the following steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Application built with React.
 
-### `yarn test`
+The schema is located at https://spacexdata.herokuapp.com/graphql.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Set your operations and fragments location to ./src/components/**/*.{ts,tsx} so that it will search all our TypeScript files for query declarations.
 
-### `yarn build`
+Use the default plugins “TypeScript”, “TypeScript Operations”, “TypeScript React Apollo.”
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Update the generated destination to src/generated/graphql.tsx (.tsx is required by the react-apollo plugin).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Do not generate an introspection file.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Use the default codegen.yml file.
 
-### `yarn eject`
+Make your run script codegen.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Now install the plugins the CLI tool added to your package.json by running the yarn command in your CLI.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+We will also make one update to our codegen.yml file so that it will also generate typed React Hook queries by adding the withHooks: true configuration option. Your configuration file should look like the following:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   overwrite: true
+   schema: 'https://spacexdata.herokuapp.com/graphql'
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   documents: './src/components/**/*.ts'
 
-## Learn More
+   generates:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   src/generated/graphql.tsx:  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+      plugins:
+
+      - 'typescript'
+
+      - 'typescript-operations'
+
+      - 'typescript-react-apollo'
+
+      config:
+
+         withHooks: true
+  
